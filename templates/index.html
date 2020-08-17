@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ANOVA</title>
+	<link rel="stylesheet" type="text/css" href="static/css/style.css">
+	<script type="text/javascript" src="static/js/lib/jquery.js"></script>
+	<script type="text/javascript" src="static/js/scripts/main.js"></script>
+</head>
+
+<body>
+	<div class="choose-parameters">
+		<div class="labels-parameters">
+			<label>Определите количество концентраций</label>
+			<label>Определите количество QC</label>
+			<label>Определите количество n в группах</label>	
+		</div>
+		<div class="input-parameters">
+			<input type="range" min="1" max="10" step="1" value="1" oninput="sizeConc()" id="sizeConc">
+			<input type="range" min="1" max="10" step="1" value="1" oninput="sizeQC()" id="sizeQC">
+			<input type="range" min="1" max="20" step="1" value="1" oninput="sizeN()" id="sizeN">
+		</div>
+		<div class="span-val-parameters">
+			<span id="sizeConcVal">1</span>
+			<span id="sizeQCVal">1</span>
+			<span id="sizeNVal">1</span>
+		</div>
+	</div>
+	
+
+	<form action="" id="send-values-from-calc">
+		<div class="conc-column">
+			<label>CONC</label>
+			<input type="text" name="ConcVal">
+		</div>
+		<!-- <label>CONC<input type="text" name="ConcVal"></label> -->
+		<!-- <label>N<input type="text" name="NVal"></label> -->
+		<!-- <button type="submit">Расчет</button> -->
+	</form>
+
+
+	
+</body>
+</html>

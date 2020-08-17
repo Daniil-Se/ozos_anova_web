@@ -1,0 +1,47 @@
+body {
+	/*background-color: red;*/
+}
+.choose-parameters {
+	width: 30%;
+	display: flex;
+	/*flex-direction: column;	*/
+}
+.input-parameters {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.span-val-parameters {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;	
+}
+
+.labels-parameters label {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.labels-parameters label span {
+
+}
+
+#send-values-from-calc {
+	width: 100%;
+	height: 100px;
+	background-color: grey;
+	display: flex;
+	justify-content: space-between;
+}
+
+.conc-column {
+	background-color: red;
+	margin: 10px;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+.conc-column label input {
+	/*width: 5%;*/
+}
