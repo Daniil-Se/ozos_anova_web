@@ -3,10 +3,11 @@ $(document).ready(function() {
 
 	$('#send-values-from-calc').submit(function(e) {
 		e.preventDefault()
+		// let jsonObj = $(this).serializeArray()
 		let jsonObj = $(this).serializeArray()
-		// console.log(jsonObj)
+		console.log(jsonObj)
 		$.ajax({
-			type: "PUT",
+			type: "POST",
 			url: "/get_inputs_values",
 			data: jsonObj,
 			success: function (responce) {
@@ -30,38 +31,41 @@ function createInputs() {
 	$('#sizeQCVal').html(sizeQC)
 	$('#sizeNVal').html(sizeN)
 
-	createConc(sizeConc)
-	createQC(sizeQC)
-	createN(sizeN)
+	createConc(sizeConc, sizeQC, sizeN)
 }
 
 
-function createConc(size) {
+function createConc(sizeConc, sizeQC, sizeN) {
+	/* функция отрисовывает поля для ввода CONC */
 	let inputConc = ''
-	for (let i=0;i<size;i++) { // цикл отрисует столько блоков сколько значений size
+	for (let concNumCol=0;concNumCol<sizeConc;concNumCol++) { 
+		let inputQC = createQC(sizeQC, sizeN, concNumCol)
 		inputConc += `<div class="conc-column">
-					      <label>CONC<br><input type="text" name="ConcVal_${i+1}"></label>
-					      <div class="qc-column"></div>
+					      <label>CONC<br><input type="text" name="ConcVal_${concNumCol+1}"></label>
+					      <div class="qc-column">${inputQC+1}</div>
 					  </div>`
 	}
 	$('.all-inputs').html(inputConc)	
 }
 
-function createQC(size) {
+function createQC(sizeQC, sizeN, concNumCol) {
+	/* функция отрисовывает поля для ввода QC */
 	let inputQC = ''
-	for (let i=0;i<size;i++) { // цикл отрисует столько блоков сколько значений size
+	for (let QCNumCol=0;QCNumCol<sizeQC;QCNumCol++) { 
+		let inputN = createN(sizeN, concNumCol, QCNumCol)
 		inputQC += `<div class="qc">
-					    <label>qc<br><input type="text" name="QCVal_${i+1}"></label>
-					    <div class="n-column"></div>
+					    <label>qc<br><input type="text" name="QCVal_${concNumCol+1}_${QCNumCol+1}"></label>
+					    <div class="n-column">${inputN}</div>
 					</div>`
 	}
-	$('.qc-column').html(inputQC) 
+	return inputQC
 }
 
-function createN(size) {
+function createN(sizeN, concNumCol, QCNumCol) {
+	/* функция отрисовывает поля для ввода n */
 	let createN = ''
-	for (let i=0;i<size;i++) { // цикл отрисует столько блоков сколько значений size
-		createN += `<label>${i+1}<input type="text" name="nVal_${i+1}"></label>`
+	for (let n=0;n<sizeN;n++) { 
+		createN += `<label>${n+1}<input type="text" name="nVal_${concNumCol+1}_${QCNumCol+1}_${n+1}"></label>`
 	}
-	$('.n-column').html(createN)	
+	return createN
 }

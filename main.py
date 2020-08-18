@@ -10,12 +10,12 @@ def hello_world():
     return render_template('index.html')
 
 
-@app.route('/get_inputs_values', methods=['POST', 'PUT'])
+@app.route('/get_inputs_values', methods=['POST'])
 def get_inputs_values():
 	if request.method == "POST":
-		print('Я получил POST')
-	elif request.method == "PUT":
-		print('Я получил PUT')	
+		for i in request.values:
+			print(request.form.get(i))
+		print('Я получил POST')	
 	return {'status': 'success'}
 
 
