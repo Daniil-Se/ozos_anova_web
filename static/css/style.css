@@ -30,18 +30,33 @@ body {
 #send-values-from-calc {
 	width: 100%;
 	height: 100px;
-	background-color: grey;
 	display: flex;
-	justify-content: space-between;
+	flex-direction: column;
+	justify-content: flex-start;
 }
 
 .conc-column {
 	background-color: red;
-	margin: 10px;
+	padding: 10px;
 	display: flex;
-	flex-direction: column;
-	width: 100%;
+	/*flex-direction: column;*/
+	justify-content: flex-start;
+	/*width: 100%;*/
+}
+.conc-column label {
+	text-align: center;
 }
 .conc-column label input {
 	/*width: 5%;*/
+}
+.qc-column {
+	display: flex;
+	/*flex-direction: column;*/
+}
+.qc-column label {
+	height: 10%;
+}
+.n-column {
+	display: flex;
+	flex-direction: column;
 }

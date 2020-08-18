@@ -3,37 +3,65 @@ $(document).ready(function() {
 
 	$('#send-values-from-calc').submit(function(e) {
 		e.preventDefault()
-		alert('submit')
+		let jsonObj = $(this).serializeArray()
+		// console.log(jsonObj)
+		$.ajax({
+			type: "PUT",
+			url: "/get_inputs_values",
+			data: jsonObj,
+			success: function (responce) {
+				console.log(responce)
+			},	
+			error: function (responce) {
+				console.log(responce)
+			} 
+		})
 	})
-
+	createInputs()
 })
 
-function sizeConc() {
-	let size = $('#sizeConc').val()
-	$('#sizeConcVal').html(size)
-	createConc(size)
+
+function createInputs() {
+	let sizeConc = $('#sizeConc').val()
+	let sizeQC = $('#sizeQC').val()
+	let sizeN = $('#sizeN').val()
+
+	$('#sizeConcVal').html(sizeConc)
+	$('#sizeQCVal').html(sizeQC)
+	$('#sizeNVal').html(sizeN)
+
+	createConc(sizeConc)
+	createQC(sizeQC)
+	createN(sizeN)
 }
 
-function sizeQC() {
-	let size = $('#sizeQC').val()
-	$('#sizeQCVal').html(size)
-}
-
-function sizeN() {
-	let size = $('#sizeN').val()
-	$('#sizeNVal').html(size)
-}
 
 function createConc(size) {
 	let inputConc = ''
-	for (let i=0;i<size;i++) {
+	for (let i=0;i<size;i++) { // цикл отрисует столько блоков сколько значений size
 		inputConc += `<div class="conc-column">
-					      <label>CONC</label>
-					      <input type="text" name="ConcVal">
+					      <label>CONC<br><input type="text" name="ConcVal_${i+1}"></label>
+					      <div class="qc-column"></div>
 					  </div>`
 	}
-	$('#send-values-from-calc').html(inputConc)
-	$('.conc-column').css('width', `calc((100% / ${size}) - 100px`)
-	// $('.conc-column label input').css('width', `calc(100% / ${size})`)
+	$('.all-inputs').html(inputConc)	
 }
 
+function createQC(size) {
+	let inputQC = ''
+	for (let i=0;i<size;i++) { // цикл отрисует столько блоков сколько значений size
+		inputQC += `<div class="qc">
+					    <label>qc<br><input type="text" name="QCVal_${i+1}"></label>
+					    <div class="n-column"></div>
+					</div>`
+	}
+	$('.qc-column').html(inputQC) 
+}
+
+function createN(size) {
+	let createN = ''
+	for (let i=0;i<size;i++) { // цикл отрисует столько блоков сколько значений size
+		createN += `<label>${i+1}<input type="text" name="nVal_${i+1}"></label>`
+	}
+	$('.n-column').html(createN)	
+}

@@ -15,26 +15,23 @@
 			<label>Определите количество n в группах</label>	
 		</div>
 		<div class="input-parameters">
-			<input type="range" min="1" max="10" step="1" value="1" oninput="sizeConc()" id="sizeConc">
-			<input type="range" min="1" max="10" step="1" value="1" oninput="sizeQC()" id="sizeQC">
-			<input type="range" min="1" max="20" step="1" value="1" oninput="sizeN()" id="sizeN">
+			<input type="range" min="1" max="10" step="1" value="4" oninput="createInputs()" id="sizeConc">
+			<input type="range" min="1" max="10" step="1" value="3" oninput="createInputs()" id="sizeQC">
+			<input type="range" min="1" max="20" step="1" value="5" oninput="createInputs()" id="sizeN">
 		</div>
 		<div class="span-val-parameters">
-			<span id="sizeConcVal">1</span>
-			<span id="sizeQCVal">1</span>
-			<span id="sizeNVal">1</span>
+			<span id="sizeConcVal"></span>
+			<span id="sizeQCVal"></span>
+			<span id="sizeNVal"></span>
 		</div>
 	</div>
 	
 
 	<form action="" id="send-values-from-calc">
-		<div class="conc-column">
-			<label>CONC</label>
-			<input type="text" name="ConcVal">
+		<div class="all-inputs">
+			
 		</div>
-		<!-- <label>CONC<input type="text" name="ConcVal"></label> -->
-		<!-- <label>N<input type="text" name="NVal"></label> -->
-		<!-- <button type="submit">Расчет</button> -->
+		<button type="submit">Расчет</button>
 	</form>
 
 
